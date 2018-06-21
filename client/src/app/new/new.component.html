@@ -1,0 +1,23 @@
+<a [routerLink]="['/home']">Home</a>
+<p>Add a new author:</p>
+
+<div class="error" *ngIf="error">
+  <p *ngFor="let e of error">{{e}}</p>
+</div>
+
+<form (submit)="new()" method="post">
+  <label>
+    <div *ngIf="name.errors" class="validation">
+      <div *ngIf="name.errors.required">
+        *Name is required
+      </div>
+      <div *ngIf="name.errors.minlength">
+        *Name must be at least 3 characters
+      </div>
+    </div>
+    Name:
+    <input type="text" name="name" required minlength="3" maxlength="24" [(ngModel)]="newAuthor.name" #name="ngModel">
+  </label>
+  <button [routerLink]="['/home']">Cancel</button>
+  <button type="submit">Submit</button>
+</form>
